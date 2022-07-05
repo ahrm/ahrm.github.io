@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Implementing a screen reader for sioyek PDF viewer"
+title:  "Implementing text to speech for sioyek PDF viewer"
 date:   2022-07-05 15:45:21 +0430
 categories: jekyll update
 ---
