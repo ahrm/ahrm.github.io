@@ -1,0 +1,101 @@
+---
+layout: post
+title:  "Sioyek 2.0 Release Notes"
+date:   2022-12-12 15:45:21 +0430
+categories: jekyll update
+---
+
+[Sioyek](https://sioyek.info/) is an open-source, cross-platform PDF viewer, optimized for research papers and textbooks. These are the release notes for the recently released [sioyek 2.0](https://github.com/ahrm/sioyek/releases/latest). If you are not familiar with sioyek, [here](https://www.youtube.com/watch?v=RaHRvnb0dY8) is a video tutorial.
+
+# super_fast_search
+
+We now have a `super_fast_search` option which can be enabled in `prefs_user.config` like so:
+```
+super_fast_search 1
+```
+When enabled, sioyek indexes document texts for *extremely* fast search:
+
+<hr/>
+<video muted controls width="100%">
+    <source src="/images/2022-09-1-pdf-viewer-text-search-benchmark/video.mp4" type="video/mp4">
+</video>
+<hr/>
+<p></p>
+
+For a more thorough benchmark and comparison with other viewers see [this blog post](https://ahrm.github.io/jekyll/update/2022/09/11/pdf-viewer-text-search-benchmark.html).
+
+The reasons that it is not enabled by default is that the index slightly increases memory usage (about 50MB for every 1000 pages). It should not be a big deal for most users though, so I recommend enabling it unless you have <2GB RAM.
+
+When `super_fast_search` is enabled, we have a `regex_search` command which uses regular expressions to search the document. For example searching for `[0-9]` finds all the digits in the document.
+
+# Scrolling between pages in overview window
+
+Sioyek allows you to open a quick overview of references (even when they are not linked in the PDF file). Previously you could scroll in this window but only in the original page. Now, we allow you to scroll to other pages in the overview window:
+
+<hr/>
+<video muted controls width="100%">
+    <source src="/images/2022-12-12-sioyek-2/overview.mp4" type="video/mp4">
+</video>
+<hr/>
+<p></p>
+
+# Search results in an overview
+Using `overview_next_item` and `overview_prev_item` commands, you can now open an overview to search results instead of jumping to them:
+
+
+<hr/>
+<video muted controls width="100%">
+    <source src="/images/2022-12-12-sioyek-2/search.mp4" type="video/mp4">
+</video>
+<hr/>
+<p></p>
+
+# overview_to_portal
+
+Added a new `overview_to_portal` command which opens a quick overview to the closest portal. Previously portals were mostly useful for users with multiple monitors, but now they should be beneficial for all users. See the portal section of tutorial video for a brief introduction to what portals are, as well as a demo of this feature.
+
+# Macros
+
+You can now define macros in your `prefs_user.config` file, which can be used to execute multiple commands. For example:
+
+```
+new_macro _goto_top_right goto_top_of_page;goto_right
+```
+
+Note that macro names must start with an underscore so as not to be confused with built-in sioyek commands. The commands in the list are separated using a semicolon.
+
+# Source other config files
+Added a source command which allows you to include another config file in your `prefs_user.config`. Can be used like this:
+```
+source /path/to/other/file.config
+```
+
+Which is quite useful for easier installation of extensions and themes. For example see the dracula theme here: https://draculatheme.com/sioyek.
+
+# Improved extensions
+
+The [official python module](https://pypi.org/project/sioyek/) now uses a much faster communication method with the running sioyek process. Moreover, we have added some new variables which can be used in extensions, for example `%{selection_begin_document}` and `%{selection_end_document}` which expand to the current selection locations, and `%{selected_rect}` which expands to the current selected rectanle using the new `select_rect` command.
+
+For example [here](https://github.com/ahrm/sioyek-python-extensions#-add_text) is an extension that uses these new options to add text annotations to sioyek:
+
+<hr/>
+<video muted controls width="100%">
+    <source src="/images/2022-12-12-sioyek-2/text.mp4" type="video/mp4">
+</video>
+<hr/>
+<p></p>
+
+# Other changes
+
+- Upgrade to MuPDF 1.20 .
+- New keybind parsing method with support for non-standard layouts and unicode characters
+- Add a smooth scroll mode.
+- Add ability to select single words using `keyboard_select` command
+- Add a scrollbar which can be enabled using `toggle_scrollbar` command
+- Add commands to set configuration options at runtime.
+- Add `prerendered_page_count` option which allows to configure how many pages does sioyek prerender
+- Add an option to show the closest bookmark in the statusbar
+- Add an option to indicate whether we are close to a portal in the statusbar
+- Add an option to highlight using middle click instead of pressing a button. See https://github.com/ahrm/sioyek/commit/7390a40dec98b829c8beacd5d3997b00d2072ec7.
+- Add ability to specify colors in config files using hexadecimal strings. For example instead of `1 1 0` you can now use `#ffff00`.
+- Many bug-fixes and quality of life improvements
