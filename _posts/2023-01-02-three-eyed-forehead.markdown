@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Three-eyed forehead in stable diffusion"
+title:  "Three-eyed forehead in Stable Diffusion"
 date:   2023-01-02 15:45:21 +0430
 categories: jekyll update
 ---
@@ -59,9 +59,9 @@ First I downloaded a random eye image from the web and used advanced inpainting 
 <p align="center" >
   <img src="/images/2023-01-02-three-eyes/one-eye.png" />
 </p>
-<div><small><i>Prompt: Demonic red eye on the forehead</i></small><div>
-<div><small><i>Negative Prompt: Eyelashes</i></small><div>
-<div><small><i>Generated using advanced inpainting by pasting an eye image from the web on the forehead</i></small><div>
+<div><small><i>Prompt: Demonic red eye on the forehead</i></small></div>
+<div><small><i>Negative Prompt: Eyelashes</i></small></div>
+<div><small><i>Generated using advanced inpainting by pasting an eye image from the web on the forehead</i></small></div>
 <hr/>
 <p></p>
 
@@ -107,6 +107,6 @@ And here is the final result:
 </p>
 <hr/>
 
-Of course it is not a masterpiece, but it was a very fun experiment. And it has the potential to be way more fun, because I was running it on an old 1070, each inpainting took about 20 seconds which was quite annoying. But I could envision a future where generation is basically real-time, imagine navigating through possible generations using mouse wheel and tweaking the parameters and seeing the effects in real-time. With the [supposed improvements](https://twitter.com/emostaque/status/1598131202044866560) this future might not be far away.
+Of course it is not a masterpiece, but it was a very fun experiment. And it has the potential to be way more fun, because I was running it on an old 1070, each inpainting took about 20 seconds which was quite annoying. But I could envision a future where generation is basically real-time, imagine navigating through possible generations using mouse wheel and tweaking the parameters and seeing the effects in real-time. With the [supposed improvements](https://twitter.com/emostaque/status/1598131202044866560) in stable diffusion, this future might not be far away.
 
 <p></p>
